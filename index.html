@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitesurfing Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+    <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Lora', serif;
+
+    }
+
+    .navbar-brand,
+    .navbar-nav .nav-link,
+    .hero-content h1,
+    .hero-content p {
+        font-family: 'Lora', serif;
+    }
+
+    .hero {
+        background: url('assets/homesection.png') no-repeat center center/cover;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+
+    .svg-decoration {
+        width: 150px;
+        /* Adjust width */
+        margin: 1px 0 15px;
+        /* Add spacing */
+    }
+
+    .small-image {
+        width: 150px;
+        /* Adjust size as needed */
+        height: auto;
+        /* Maintain aspect ratio */
+    }
+
+    .course-card {
+        border-radius: 20px;
+        /* Rounded corners */
+        overflow: hidden;
+        /* Ensures border-radius applies properly */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .course-card img {
+        width: 100%;
+        height: 250px;
+        /* Adjust the image height */
+        object-fit: cover;
+        /* Ensures proper scaling */
+        border-radius: 20px;
+    }
+
+    p.text-muted {
+        font-size: 14px;
+        /* Slightly smaller text for a neat look */
+        max-width: 80%;
+        /* Keeps text width balanced */
+        margin: 0 auto;
+        /* Centers the text */
+    }
+
+    .custom-btn {
+        background-color: white;
+        color: #007bff;
+        /* Bootstrap primary blue */
+        border: 2px solid #007bff;
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        display: inline-block;
+        width: 300px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .custom-btn:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .blog-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .blog-text {
+        max-width: 350px;
+    }
+
+    .blog-carousel {
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+        max-width: 700px;
+        /* Ensuring only 2 cards are visible */
+    }
+
+    .blog-cards {
+        display: flex;
+        gap: 20px;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .blog-card {
+        flex: 0 0 330px;
+        border-radius: 15px;
+        background: #D7ECFF;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .blog-card .card-body {
+        padding: 20px;
+        text-align: left;
+    }
+
+    .blog-card h5 {
+        font-weight: bold;
+    }
+
+    .blog-card a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .blog-card a:hover {
+        text-decoration: underline;
+    }
+
+    .blog-controls {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .control-btn {
+        background-color: white;
+        border: 1px solid #007bff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .control-btn:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .control-btns {
+        background-color: white;
+        border: 1px solid #007bff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .control-btns:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    footer {
+        background-color: #343a40;
+    }
+
+    footer h5 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    footer p {
+        font-size: 0.875rem;
+    }
+
+    .social-icons a {
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 767px) {
+        footer .row>div {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+        }
+    }
+
+    .loader-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        visibility: hidden;
+        /* Initially hidden */
+    }
+
+    /* For smooth fade-in */
+    .loader-container.show {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    /* You can use a custom image, such as a GIF or SVG, that represents kitesurfing */
+    .loader-img {
+        width: 100px;
+        height: 100px;
+        animation: spin 2s infinite linear;
+    }
+
+    /* Animation for rotating the loader */
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="loader" class="loader-container">
+        <img src="assets/fff.png" alt="Kitesurfing Loader" class="loader-img">
+    </div> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">LOGO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <a href="#" class="btn btn-primary ms-3 d-none d-lg-block">Join Now</a>
+        </div>
+    </nav>
+
+    <div class="container-fluid hero d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-12 text-lg-start text-center">
+                    <div class="hero-content">
+                        <h1 class="display-3"><b>KITESURFING</b></h1>
+                        <h4>Ride the Wind, Master the Waves</h4>
+                        <a href="#" class="btn btn-light btn-lg book-now-btn">BOOK NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section  -->
+    <section class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1>About Us</h1>
+                <img src="assets/ss.png" alt="Underline" class="svg-decoration">
+
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                    essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing
+                    Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                    including versions of Lorem Ipsum..</p>
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+            <!-- Right Side: Image -->
+            <div class="col-md-6 text-center">
+                <img src="assets/about_us.png" class="img-fluid rounded" alt="Kitesurfing">
+            </div>
+        </div>
+    </section>
+    <!-- End Of About Us Section  -->
+
+    <!-- Feature Sections -->
+    <section class="container my-5">
+        <div class="text-center my-4">
+            <h1>Our Features</h1>
+            <img src="assets/ss.png" alt="Underline" class="d-block mx-auto mt-2 small-image">
+        </div>
+
+        <div class="row g-4">
+            <!-- Large Card -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-lg p-4" style="background-color: #ced0f8; color: #333;">
+                    <!-- <img src="assets/feature1.jpg" class="card-img-top rounded" alt="Feature 1"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Feature One</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia
+                            odio vitae vestibulum.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Smaller Cards -->
+            <div class="col-md-6">
+                <div class="row g-4">
+                    <div class="col-md-12">
+                        <div class="card h-100 shadow-sm p-3" style="background-color: #ffd5a5; color: #333;">
+                            <!-- <img src="assets/feature2.jpg" class="card-img-top rounded" alt="Feature 2"> -->
+                            <div class="card-body">
+                                <h5 class="card-title">Feature Two</h5>
+                                <p class="card-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card h-100 shadow-sm p-3" style="background-color: #b8cfec; color: #333;">
+                            <!-- <img src="assets/feature3.jpg" class="card-img-top rounded" alt="Feature 3"> -->
+                            <div class="card-body">
+                                <h5 class="card-title">Feature Three</h5>
+                                <p class="card-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                    nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staggered Small Cards -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow p-3" style="background-color: #c1dbda; color: #333;">
+                    <!-- <img src="assets/feature4.jpg" class="card-img-top rounded" alt="Feature 4"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Feature Four</h5>
+                        <p class="card-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugiat nulla pariatur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-lg p-4" style="background-color: #fceea4; color: #333;">
+                    <!-- <img src="assets/feature5.jpg" class="card-img-top rounded" alt="Feature 5"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Feature Five</h5>
+                        <p class="card-text">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm p-3" style="background-color: #cce9ff; color: #333;">
+                    <!-- <img src="assets/feature6.jpg" class="card-img-top rounded" alt="Feature 6"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Feature Six</h5>
+                        <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                            doloremque laudantium.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- // End Of Features Section //  -->
+
+
+    <!-- Courses Sections -->
+    <section class="container my-5">
+        <div class="text-center my-4">
+            <h1>Our Courses</h1>
+            <img src="assets/ss.png" alt="Underline" class="d-block mx-auto mt-2 small-image">
+        </div>
+        <div class="row g-4">
+            <!-- Course 1 -->
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="course-card shadow-lg">
+                        <img src="assets/sss.png" class="rounded" alt="Web Development">
+                    </div>
+                    <h5 class="fw-bold mt-3">Web Development</h5>
+                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </p>
+                    <a href="#" class="custom-btn  mt-2">Learn More</a>
+                </div>
+            </div>
+            <!-- Course 2 -->
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="course-card shadow-lg">
+                        <img src="assets/fff.png" class="rounded" alt="Beginner Course">
+                    </div>
+                    <h5 class="fw-bold mt-3">Beginner Course</h5>
+                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </p>
+                    <a href="#" class="custom-btn  mt-2">Learn More</a>
+                </div>
+            </div>
+            <!-- Course 3 -->
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="course-card shadow-lg">
+                        <img src="assets/sss.png" class="rounded" alt="Beginner Course">
+                    </div>
+                    <h5 class="fw-bold mt-3">Beginner Course</h5>
+                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <a href="#" class="custom-btn  mt-2">Learn More</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="course-card shadow-lg">
+                        <img src="assets/sss.png" class="rounded" alt="Beginner Course">
+                    </div>
+                    <h5 class="fw-bold mt-3">Beginner Course</h5>
+                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </p>
+                    <a href="#" class="custom-btn  mt-2">Learn More</a>
+                </div>
+            </div>
+            <!-- Course 2 -->
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="course-card shadow-lg">
+                        <img src="assets/fff.png" class="rounded" alt="Beginner Course">
+                    </div>
+                    <h5 class="fw-bold mt-3">Beginner Course</h5>
+                    <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </p>
+                    <a href="#" class="custom-btn  mt-2">Learn More</a>
+                </div>
+            </div>
+            <!-- Course 3 -->
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div class="course-card shadow-lg">
+                        <img src="assets/sss.png" class="rounded" alt="Beginner Course">
+                    </div>
+                    <h5 class="fw-bold mt-3">Beginner Course</h5>
+                    <p class="text-muted">Explore SEO, social media marketing, and PPC to grow your online presence.</p>
+                    <a href="#" class="custom-btn  mt-2">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // End Of Courses Section //  -->
+
+    <!-- Feature Sections -->
+    <section class="container my-5" style="padding-top:50px;padding-bottom:50px;">
+        <div class="col-md-12">
+            <div class="row g-4">
+                <div class="col-md-12">
+                    <div class="card h-100 shadow-sm p-3"
+                        style="background-color: #004369; color: #333; border-radius:25px; height: 450px; position: relative;">
+                        <!-- Card Content -->
+                        <div class="card-body">
+                            <h5 class="card-title text-white text-center">GETTING STARTED</h5>
+                            <p class="card-text text-white text-center">Sed do eiusmod tempor incididunt ut labore et
+                                dolore magna aliqua.</p>
+                            <button class="btn mt-3"
+                                style="background-color: #c26dbc; color: white; border-radius: 25px; display: block; width: 150px; margin: 0 auto;">
+                                Learn More
+                            </button>
+                        </div>
+                        <!-- Arrow Image -->
+                        <div class="arrow-image"
+                            style="position: absolute; top: 70%; right:450px; transform: translateY(-50%);">
+                            <img src="assets/arrow1.png" alt="Arrow" class="img-fluid rounded"
+                                style="max-height: 150px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // End Of Features Section //  -->
+
+
+
+
+    <!-- Blog Sections -->
+    <section class="container my-5 blog-section">
+        <!-- Left Side: Fixed Text -->
+        <div class="blog-text">
+            <p class="mb-1">Whether you're a complete beginner or an</p>
+            <h1>Blogs</h1>
+            <p>Whether you're a complete beginner or an experienced rider, we have lessons tailored for you.</p>
+            <div class="blog-controls" style="align-item:center">
+                <div class="control-btn" onclick="moveSlide(-1)">&#9665;</div>
+                <div class="control-btn" onclick="moveSlide(1)">&#9655;</div>
+            </div>
+        </div>
+
+        <!-- Right Side: Movable Blog Cards -->
+        <div class="blog-carousel">
+            <div class="blog-cards" id="blogCards">
+                <!-- Blog Card 1 -->
+                <div class="blog-card">
+                    <img src="assets/sss.png" alt="Blog 1">
+                    <div class="card-body">
+                        <h5>Title</h5>
+                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+                <!-- Blog Card 2 -->
+                <div class="blog-card">
+                    <img src="assets/fff.png" alt="Blog 2">
+                    <div class="card-body">
+                        <h5>Title</h5>
+                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+                <!-- Blog Card 3 -->
+                <div class="blog-card">
+                    <img src="assets/sss.png" alt="Blog 3">
+                    <div class="card-body">
+                        <h5>Title</h5>
+                        <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // End Of Blog Section //  -->
+
+    <!-- Testimonials -->
+
+    <section class="container my-5" style="padding-top:50px;">
+        <div class="text-center my-4">
+            <h1>Hear From Our Awesome Users</h1>
+            <img src="assets/ss.png" alt="Underline" class="d-block mx-auto mt-2 small-image">
+        </div>
+        <div class="testimonial-carousel position-relative">
+            <div class="row g-4" id="testimonialSlider">
+                <!-- Testimonial 1 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card p-4">
+                        <div class="d-flex align-items-center">
+                            <img src="assets/images.jpg" style="width: 80px;" alt="User 1"
+                                class="testimonial-img rounded-circle me-3">
+                            <div>
+                                <h5 class="mb-1">John Doe</h5>
+                                <div class="star-rating" style="color:orange;font-size: 1.5rem;">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-muted mt-3" style=" font-size: 1rem; ">"This service has completely transformed
+                            the way I work. Highly
+                            recommended!"</p>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card p-4">
+                        <div class="d-flex align-items-center">
+                            <img src="assets/images.jpg" style="width: 80px;" alt="User 2"
+                                class="testimonial-img rounded-circle me-3">
+                            <div>
+                                <h5 class="mb-1">Jane Smith</h5>
+                                <div class="star-rating" style="color:orange;font-size: 1.5rem;">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-muted mt-3" style=" font-size: 1rem; ">"Amazing experience! The team is
+                            professional and very helpful."</p>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="col-md-4">
+                    <div class="testimonial-card p-4">
+                        <div class="d-flex align-items-center">
+                            <img src="assets/images.jpg" style="width: 80px;" alt="User 3"
+                                class="testimonial-img rounded-circle me-3">
+                            <div>
+                                <h5 class="mb-1">Alex Johnson</h5>
+                                <div class="star-rating" style="color:orange;font-size: 1.5rem; ">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-muted mt-3" style=" font-size: 1rem; ">"I can't believe the difference this has
+                            made for me. Truly outstanding !"</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Slider Buttons -->
+            <div class="d-flex justify-content-center mt-3">
+                <button class="control-btns mx-2" onclick="moveTestimonial(-1)">&#9665;</button>
+                <button class="control-btns mx-2" onclick="moveTestimonial(1)">&#9655;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Of Testimonials  -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <!-- About Section -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>About Us</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet accumsan arcu, ut faucibus
+                        purus.</p>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Home</a></li>
+                        <li><a href="#" class="text-white">About</a></li>
+                        <li><a href="#" class="text-white">Services</a></li>
+                        <li><a href="#" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info Section -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: <a href="mailto:info@example.com" class="text-white">info@example.com</a></li>
+                        <li>Phone: <a href="tel:+123456789" class="text-white">+1 234 567 89</a></li>
+                        <li>Address: 123, Main Street, City</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Social Media and Copyright Section -->
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <p class="mb-0">© 2025 TribalKiteSchool. All Rights Reserved.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script>
+    let currentIndex = 0;
+
+    function moveSlide(direction) {
+        const blogCards = document.getElementById('blogCards');
+        const totalCards = blogCards.children.length;
+        const cardWidth = blogCards.children[0].offsetWidth + 20; // Adjust for spacing
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = totalCards - 2; // Show two at a time
+        if (currentIndex >= totalCards - 1) currentIndex = 0;
+        blogCards.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+    }
+
+    let currentSlide = 0;
+
+    function moveTestimonial(direction) {
+        const blogCards = document.getElementById('testimonialSlider');
+        const totalCards = blogCards.children.length;
+        const cardWidth = blogCards.children[0].offsetWidth + 20; // Adjust for spacing
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = totalCards - 2; // Show two at a time
+        if (currentSlide >= totalCards - 1) currentSlide = 0;
+        blogCards.style.transform = `translateX(${-currentSlide * cardWidth}px)`;
+    }
+
+    // Show the loader when the page is loading
+    window.addEventListener('load', () => {
+        document.getElementById('loader').classList.add('show');
+    });
+
+    // Hide the loader when the page is fully loaded
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('loader').style.display = 'none';
+        }, 1000); // Delay to keep loader visible for a while after loading
+    });
+    </script>
+
+</body>
+
+</html>
