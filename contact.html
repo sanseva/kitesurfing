@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitesurfing Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Lora', serif;
+
+    }
+
+    .navbar-brand,
+    .navbar-nav .nav-link,
+    .hero-content h1,
+    .hero-content p {
+        font-family: 'Lora', serif;
+    }
+
+    .card-custom {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .form-container, .map-container {
+            padding: 20px;
+        }
+
+        .form-container {
+            flex: 1;
+        }
+
+        .map-container {
+            flex: 1;
+            height: 100%;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        .contact-form .form-control {
+            border-radius: 25px;
+        }
+
+        .contact-form button {
+            background-color: #007bff;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 767px) {
+            .row {
+                flex-direction: column;
+            }
+            .map-container {
+                height: 300px;
+            }
+        }
+  
+        .info-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .info-card h2 {
+            color: #007bff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+        .list-group-item {
+            background-color: transparent;
+            border: none;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .list-group-item i {
+            color: #28a745;
+            margin-right: 10px;
+        }
+
+        .info-card img {
+            border-radius: 10px;
+            max-width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-cta {
+            background-color: #007bff;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .btn-cta:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .info-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">LOGO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <a href="contact.html" class="btn btn-primary ms-3 d-none d-lg-block">Join Now</a>
+        </div>
+    </nav>
+    
+    
+    <div class="container my-5">
+        <div class="card-custom">
+            <h2 class="mb-4 text-left">Contact Us</h2>
+            <div class="row">
+                <!-- Left side: Contact Form -->
+                <div class="form-container">
+                    <form class="contact-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Write your message"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right side: Map -->
+                <div class="col-md-6">
+                    <div class="map-container">
+                        <!-- Replace with your own map (Google Map Embed Example) -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126030.17956076335!2d-74.259869!3d40.6976701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a1a16eae519%3A0x64fa38da072f2d68!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1618898286185!5m2!1sen!2sus"
+                        allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="info-card">
+            <h2 class="text-center">Please Meet Us 20 Minutes Before Your Scheduled Lesson</h2>
+            <p class="text-center">At N1 Surf Shop to check in and get geared up with your Instructor.</p>
+            <p class="text-center">We want you to have the best experience possible, so please arrive on time and be ready for an exciting adventure!</p>
+
+            <!-- Included Section -->
+            <div class="section-title">Included:</div>
+            <ul class="list-group">
+                <li class="list-group-item"><i class="fas fa-check-circle"></i> Private one on one instruction with an IKO certified instructor</li>
+                <li class="list-group-item"><i class="fas fa-check-circle"></i> Kite equipment and safety gear</li>
+                <li class="list-group-item"><i class="fas fa-check-circle"></i> Radio helmet for communications while in water</li>
+                <li class="list-group-item"><i class="fas fa-check-circle"></i> Gear insurance</li>
+                <li class="list-group-item"><i class="fas fa-check-circle"></i> IKO certification</li>
+                <li class="list-group-item"><i class="fas fa-check-circle"></i> Parking</li>
+            </ul>
+
+            <!-- Not Included Section -->
+            <div class="section-title">Not Included:</div>
+            <ul class="list-group">
+                <li class="list-group-item"><i class="fas fa-times-circle"></i> Tips</li>
+            </ul>
+
+            <!-- What to Bring Section -->
+            <div class="section-title">What to Bring:</div>
+            <ul class="list-group">
+                <li class="list-group-item"><i class="fas fa-umbrella-beach"></i> Bathing suit</li>
+                <li class="list-group-item"><i class="fas fa-towel"></i> Towel</li>
+                <li class="list-group-item"><i class="fas fa-clothes-hanger"></i> Change of dry clothes</li>
+                <li class="list-group-item"><i class="fas fa-water"></i> Water</li>
+            </ul>
+            <p class="text-center">We have UPF shirts, towels, and sunscreen available at our Shop on site.</p>
+
+            <!-- About Tribal Kite School -->
+            <div class="section-title">About Tribal Kite School :</div>
+            <p>Tribal Kite School was born out of a dream that any kiter would have. Our aim is to show you that kiteboarding is not only a ton of fun but also a lifestyle.</p>
+            <p>This sport inspires many of us to keep connecting with each other, with nature, and to enjoy life to the fullest. If you turn to the right school, Kiteboarding is a safe and relatively easy sport to learn.</p>
+            <p>We have been teaching kiteboarding since 2010 prior to that all over the world. Our safety standards and internationally approved teaching method (IKO) will give you a great experience and bring a tremendous amount of fun into your active Caribbean holiday.</p>
+
+            <div class="text-center">
+                <a href="#" class="btn-cta">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    </body>
+</html>
